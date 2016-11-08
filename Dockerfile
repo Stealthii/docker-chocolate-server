@@ -10,4 +10,4 @@ ENV PATH="/usr/games:${PATH}"
 
 EXPOSE 2342/udp
 
-CMD ["chocolate-server"]
+ENTRYPOINT ["chocolate-server"]
