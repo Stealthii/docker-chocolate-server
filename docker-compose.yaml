@@ -1,0 +1,14 @@
+version: '2'
+services:
+    example-server:
+        image: stealthii/chocolate-server
+        mem_limit: 300000000
+        ports:
+            - 0.0.0.0:2342:2342/udp
+        command: "-servername 'Docker Doom Server'"
+    private-newsync:
+        image: stealthii/chocolate-server
+        mem_limit: 300000000
+        ports:
+            - 0.0.0.0:7045:7045/udp
+        command: "-port 7045 -servername 'Private Doom Server (newsync)' -privateserver -newsync"
