@@ -5,10 +5,17 @@ services:
         mem_limit: 33554432
         ports:
             - 0.0.0.0:2342:2342/udp
-        command: "-servername 'Docker Doom Server'"
+        environment:
+            port: 2342
+            servername: "Docker Doom Server"
+            privateserver: "false"
     private-newsync:
         image: stealthii/chocolate-server
         mem_limit: 33554432
         ports:
             - 0.0.0.0:7045:7045/udp
-        command: "-port 7045 -servername 'Private Doom Server (newsync)' -privateserver -newsync"
+        environment:
+            port: 7045
+            servername: "Private Doom Server (newsync)"
+            privateserver: "true"
+            newsync: "true"
