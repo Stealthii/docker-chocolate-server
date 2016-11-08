@@ -6,8 +6,8 @@ RUN set -x && \
         chocolate-common && \
     rm -rf /var/lib/apt/lists/*
 
-ENV PATH="/usr/games:${PATH}"
+COPY docker-entrypoint.sh /
 
 EXPOSE 2342/udp
 
-ENTRYPOINT ["chocolate-server"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
