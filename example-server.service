@@ -1,0 +1,22 @@
+# example-server.service #######################################################################
+[Unit]
+Description=Example-Server
+After=docker.service 
+Requires=docker.service 
+
+[Service]
+ExecStartPre=-/usr/bin/docker kill example-server
+ExecStartPre=-/usr/bin/docker rm example-server
+ExecStartPre=/usr/bin/docker pull stealthii/chocolate-server
+ExecStart=/usr/bin/docker run \
+    --name example-server \
+    --memory 33554432b \
+    -p 0.0.0.0:2342:2342/udp \
+    -e "port=2342" \
+    -e "privateserver=false" \
+    -e "servername=Docker Doom Server" \
+    stealthii/chocolate-server 
+ExecStop=/usr/bin/docker stop example-server
+
+[Install]
+WantedBy=multi-user.target
